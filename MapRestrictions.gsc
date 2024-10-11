@@ -4,7 +4,6 @@
 
 init()
 {
-    
     mapName = getdvar("mapname");
 
     if (mapName == "mp_rust" ||
@@ -14,7 +13,6 @@ init()
         mapName == "mp_dome" ||
         mapName == "oilrig")
     {
-        
         level thread onPlayerConnect();
     }
 }
@@ -36,10 +34,21 @@ onPlayerSpawned()
     {
         self waittill("spawned_player");
 
+       
+        primaryWeapon = self getCurrentWeapon(); 
+        secondaryWeapon = self getCurrentOffhand(); 
+
+        
+        self takeWeapon("flash_grenade_mp");
+        self takeWeapon("concussion_grenade_mp");
+
         
         self SetOffhandSecondaryClass("smoke");
-        self giveWeapon( "smoke_grenade_mp" );
+        self giveWeapon("smoke_grenade_mp");
 
+        
+        self giveWeapon(primaryWeapon);
+        self giveWeapon(secondaryWeapon);
         
         wait(0.5);
     }
